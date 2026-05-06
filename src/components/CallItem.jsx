@@ -1,8 +1,11 @@
 function CallItem({ call }) {
   return (
     <div key={call.id}>
-      {call.direction} call from {call.from} to {call.to}
-      <p>{call.call_type}</p>
+      <p>
+        {call.direction} call from {call.from} to {call.to}
+        <br />
+        <span>{call.call_type}</span>
+      </p>
     </div>
   );
 }
