@@ -1,17 +1,15 @@
 /*eslint-disable no-unused-vars */
 import { useState } from "react";
 import { callHistory } from "../data/calls";
+import CallItem from "../components/CallItem";
 
 function Home() {
   const [calls, setCalls] = useState(callHistory);
 
   return (
     <div>
-      {calls.map((call) => (
-        <span key={call.id}>
-          {call.direction} call from {call.from} to {call.to}
-          <p>{call.call_type}</p>
-        </span>
+      {calls.map((currentCall) => (
+        <CallItem key={currentCall.id} call={currentCall} />
       ))}
     </div>
   );
