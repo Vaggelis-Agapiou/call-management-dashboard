@@ -1,20 +1,30 @@
 import { useParams } from "react-router-dom";
+import { callHistory } from "../data/calls";
 
 function Details() {
   const { id } = useParams();
 
   console.log(id);
 
+  const call = callHistory.find((c) => c.id.toString() === id);
+
+  console.log(call);
+
   return (
     <div>
-      <h2>Call # Details</h2>
-      <p>Direction:</p>
-      <p>From:</p>
-      <p>To:</p>
-      <p>Type:</p>
-      <p>Duration:</p>
-      <p>Date:</p>
-      <p>Archived:</p>
+      <h2>Call #{call.id} Details</h2>
+      <p>Direction: {call.direction}</p>
+      <p>From: {call.from}</p>
+      <p>To: {call.to}</p>
+      <p>Type: {call.call_type}</p>
+      <p>Duration: {call.duration}</p>
+      <p>Date: {call.created_at}</p>
+      <p>Archived: {call.is_archived === true ? "Yes" : "No"}</p>
+      {call.notes ? (
+        call.notes.map((note) => <p key={note.id}>{note.content}</p>)
+      ) : (
+        <p>No notes for this call.</p>
+      )}
     </div>
   );
 }
