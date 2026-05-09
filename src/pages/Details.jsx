@@ -3,12 +3,7 @@ import { callHistory } from "../data/calls";
 
 function Details() {
   const { id } = useParams();
-
-  console.log(id);
-
   const call = callHistory.find((c) => c.id.toString() === id);
-
-  console.log(call);
 
   return (
     <div>
