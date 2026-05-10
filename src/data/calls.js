@@ -92,8 +92,6 @@ export const callHistory = [
     created_at: "2025-04-12T14:00:00Z",
   },
 
-  // --- NEW DATA STARTS HERE ---
-
   {
     id: "9",
     direction: "inbound",
@@ -153,7 +151,7 @@ export const callHistory = [
     to: "+33 1 23 45 67 89",
     call_type: "voicemail",
     duration: 70,
-    is_archived: false, // 👈 important: NOT archived voicemail
+    is_archived: false,
     created_at: "2025-04-14T10:15:00Z",
     notes: [
       {

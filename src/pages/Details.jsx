@@ -5,23 +5,90 @@ import Template from "../ui/Template";
 function Details() {
   const { id } = useParams();
   const call = callHistory.find((c) => c.id.toString() === id);
+  const callDate = new Date(call.created_at).toLocaleString("en-GB");
+
+  const conditionalTypeStyle = (callType) => {
+    switch (callType) {
+      case "answered":
+        return "text-green-700";
+      case "missed":
+        return "text-red-700";
+      case "voicemail":
+        return "text-yellow-700";
+    }
+  };
+
+  if (!call) {
+    return (
+      <Template>
+        <div className="text-gray-400 p-4">Call Not Found :(</div>
+      </Template>
+    );
+  }
 
   return (
     <Template>
-      <div>
-        <h2>Call #{call.id} Details</h2>
-        <p>Direction: {call.direction}</p>
-        <p>From: {call.from}</p>
-        <p>To: {call.to}</p>
-        <p>Type: {call.call_type}</p>
-        <p>Duration: {call.duration}</p>
-        <p>Date: {call.created_at}</p>
-        <p>Archived: {call.is_archived === true ? "Yes" : "No"}</p>
-        {call.notes ? (
-          call.notes.map((note) => <p key={note.id}>{note.content}</p>)
-        ) : (
-          <p>No notes for this call.</p>
-        )}
+      <div className="flex justify-center">
+        <div className="bg-white max-w-3xl w-full p-5 space-y-7 rounded-2xl border border-gray-100">
+          <h2 className="text-center text-2xl font-medium">
+            Call #{call.id} Details
+          </h2>
+
+          <div className="text-md divide-y divide-gray-300 ">
+            <div className="flex justify-between pb-2">
+              <p className="text-gray-600 ">Direction:</p>
+              <p
+                className={`font-medium capitalize ${call.direction === "inbound" ? "text-blue-600" : "text-purple-600"}`}
+              >
+                {call.direction}
+              </p>
+            </div>
+
+            <div className="flex justify-between py-2">
+              <p className="text-gray-600">From:</p>
+              <p className="font-medium">{call.from}</p>
+            </div>
+
+            <div className="flex justify-between py-2">
+              <p className="text-gray-600">To:</p>
+              <p className="font-medium">{call.to}</p>
+            </div>
+
+            <div className="flex justify-between py-2">
+              <p className="text-gray-600">Type:</p>
+              <p
+                className={`font-medium capitalize ${conditionalTypeStyle(call.call_type)}`}
+              >
+                {call.call_type}
+              </p>
+            </div>
+
+            <div className="flex justify-between py-2">
+              <p className="text-gray-600">Duration:</p>
+              <p className="font-medium">{call.duration} sec</p>
+            </div>
+
+            <div className="flex justify-between py-2">
+              <p className="text-gray-600">Date:</p>
+              <p className="font-medium">{callDate}</p>
+            </div>
+
+            <div className="flex justify-between py-2">
+              <p className="text-gray-600">Archived:</p>
+              <p className="font-medium">
+                {call.is_archived === true ? "✔️" : "✖️"}
+              </p>
+            </div>
+          </div>
+
+          <div className="border-t-2 border-gray-300 py-2">
+            {call.notes ? (
+              call.notes.map((note) => <p key={note.id}>{note.content}</p>)
+            ) : (
+              <p className="text-gray-400">No notes for this call.</p>
+            )}
+          </div>
+        </div>
       </div>
     </Template>
   );
