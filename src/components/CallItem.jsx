@@ -47,7 +47,7 @@ function CallItem({ call, onArchive }) {
           {call.duration === 0
             ? " - "
             : call.duration < 60
-              ? "Less than 1 Min"
+              ? "less than 1 min"
               : Math.floor(call.duration / 60) + " min"}
         </p>
       </div>

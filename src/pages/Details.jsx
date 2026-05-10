@@ -1,17 +1,13 @@
 import { useParams } from "react-router-dom";
 import { callHistory } from "../data/calls";
+import Template from "../ui/Template";
 
 function Details() {
   const { id } = useParams();
   const call = callHistory.find((c) => c.id.toString() === id);
 
   return (
-    <div className="min-h-screen bg-gray-200">
-      <div className="mb-10 py-8 bg-slate-900 outline-2 shadow-md shadow-slate-400">
-        <h1 className="pl-4 text-3xl font-bold text-blue-50">
-          DevReady Call Center
-        </h1>
-      </div>
+    <Template>
       <div>
         <h2>Call #{call.id} Details</h2>
         <p>Direction: {call.direction}</p>
@@ -27,7 +23,7 @@ function Details() {
           <p>No notes for this call.</p>
         )}
       </div>
-    </div>
+    </Template>
   );
 }
 
