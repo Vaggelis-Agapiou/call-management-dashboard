@@ -13,9 +13,6 @@ function Details() {
         </h1>
       </div>
       <div>
-        <h1>DevReady Call Center</h1>
-      </div>
-      <div>
         <h2>Call #{call.id} Details</h2>
         <p>Direction: {call.direction}</p>
         <p>From: {call.from}</p>
