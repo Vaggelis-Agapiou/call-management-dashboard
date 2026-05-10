@@ -16,6 +16,14 @@ function Home() {
     );
   }
 
+  if (!calls) {
+    return (
+      <Template>
+        <div className="text-gray-400 p-4">No calls yest :/</div>
+      </Template>
+    );
+  }
+
   return (
     <Template>
       <div className="max-w-4xl w-full mx-auto px-5">

@@ -39,7 +39,7 @@ function CallItem({ call, onArchive }) {
         </p>
       </div>
       <p>
-        {call.from} ➡️ {call.to}
+        {call.from} → {call.to}
       </p>
       <div className="flex flex-col">
         <p className="text-s text-gray-600">{callDate}</p>
@@ -53,7 +53,7 @@ function CallItem({ call, onArchive }) {
       </div>
       <button
         onClick={handleClick}
-        className="border rounded-xl p-1 hover:cursor-pointer hover:bg-slate-800 hover:text-slate-50"
+        className="border rounded-xl p-1 hover:cursor-pointer hover:bg-slate-800 hover:text-slate-50 transition"
       >
         Archive
       </button>

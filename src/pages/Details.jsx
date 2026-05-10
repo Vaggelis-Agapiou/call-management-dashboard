@@ -1,9 +1,10 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { callHistory } from "../data/calls";
 import Template from "../ui/Template";
 
 function Details() {
   const { id } = useParams();
+  const navigate = useNavigate();
   const call = callHistory.find((c) => c.id.toString() === id);
   const callDate = new Date(call.created_at).toLocaleString("en-GB");
 
@@ -18,6 +19,10 @@ function Details() {
     }
   };
 
+  function handleBack() {
+    navigate("/");
+  }
+
   if (!call) {
     return (
       <Template>
@@ -28,8 +33,15 @@ function Details() {
 
   return (
     <Template>
-      <div className="flex justify-center">
-        <div className="bg-white max-w-3xl w-full p-5 space-y-7 rounded-2xl border border-gray-100">
+      <div className="w-full max-w-3xl ">
+        <button
+          onClick={handleBack}
+          className="flex gap-2 border p-2 border-slate-500 rounded mb-3 text-sm text-slate-500 font-medium hover:bg-slate-800 hover:text-slate-50 transition cursor-pointer"
+        >
+          ← Back to Calls
+        </button>
+
+        <div className="bg-white w-full p-5 space-y-7 rounded-2xl border border-gray-100">
           <h2 className="text-center text-2xl font-medium">
             Call #{call.id} Details
           </h2>
