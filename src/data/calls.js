@@ -91,4 +91,75 @@ export const callHistory = [
     is_archived: false,
     created_at: "2025-04-12T14:00:00Z",
   },
+
+  // --- NEW DATA STARTS HERE ---
+
+  {
+    id: "9",
+    direction: "inbound",
+    from: "+33 6 11 22 33 44",
+    to: "+33 1 23 45 67 89",
+    call_type: "voicemail",
+    duration: 38,
+    is_archived: false,
+    created_at: "2025-04-13T09:10:00Z",
+    notes: [
+      {
+        id: "note-3",
+        content: "Asked about pricing plans and upgrades",
+      },
+    ],
+  },
+  {
+    id: "10",
+    direction: "outbound",
+    from: "+33 1 23 45 67 89",
+    to: "+33 6 77 66 55 44",
+    call_type: "voicemail",
+    duration: 52,
+    is_archived: false,
+    created_at: "2025-04-13T11:25:00Z",
+    notes: [
+      {
+        id: "note-4",
+        content: "Left voicemail about missed payment",
+      },
+    ],
+  },
+  {
+    id: "11",
+    direction: "inbound",
+    from: "+33 6 99 88 77 66",
+    to: "+33 1 23 45 67 89",
+    call_type: "answered",
+    duration: 180,
+    is_archived: false,
+    created_at: "2025-04-13T13:45:00Z",
+  },
+  {
+    id: "12",
+    direction: "outbound",
+    from: "+33 1 23 45 67 89",
+    to: "+33 6 22 11 00 99",
+    call_type: "missed",
+    duration: 0,
+    is_archived: false,
+    created_at: "2025-04-14T08:00:00Z",
+  },
+  {
+    id: "13",
+    direction: "inbound",
+    from: "+33 6 55 44 33 22",
+    to: "+33 1 23 45 67 89",
+    call_type: "voicemail",
+    duration: 70,
+    is_archived: false, // 👈 important: NOT archived voicemail
+    created_at: "2025-04-14T10:15:00Z",
+    notes: [
+      {
+        id: "note-5",
+        content: "Customer requesting callback about technical issue",
+      },
+    ],
+  },
 ];

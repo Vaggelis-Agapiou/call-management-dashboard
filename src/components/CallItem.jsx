@@ -5,10 +5,20 @@ function CallItem({ call, onArchive }) {
 
   const callDate = new Date(call.created_at).toLocaleString("en-GB");
 
+  const conditionalTypeStyle = (callType) => {
+    switch (callType) {
+      case "answered":
+        return "bg-green-100 border-green-400 text-green-700";
+      case "missed":
+        return "bg-red-100 border-red-400 text-red-700";
+      case "voicemail":
+        return "bg-yellow-100 border-yellow-400 text-yellow-700";
+    }
+  };
+
   function handleClick(e) {
     e.stopPropagation();
     onArchive(call.id);
-    console.log("clicked");
   }
 
   return (
@@ -22,7 +32,9 @@ function CallItem({ call, onArchive }) {
         >
           {call.direction}
         </p>
-        <p className="rounded-full bg-amber-300 px-2 font-medium text-sm">
+        <p
+          className={`rounded-full ${conditionalTypeStyle(call.call_type)} px-2 font-medium text-sm`}
+        >
           {call.call_type}
         </p>
       </div>
@@ -32,7 +44,11 @@ function CallItem({ call, onArchive }) {
       <div className="flex flex-col">
         <p className="text-s text-gray-600">{callDate}</p>
         <p className="text-s text-gray-600">
-          {Math.floor(call.duration / 60)} min
+          {call.duration === 0
+            ? " - "
+            : call.duration < 60
+              ? "Less than 1 Min"
+              : Math.floor(call.duration / 60) + " min"}
         </p>
       </div>
       <button
