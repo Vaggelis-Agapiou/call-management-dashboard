@@ -91,14 +91,13 @@ function Details() {
                 {call.is_archived === true ? "✔️" : "✖️"}
               </p>
             </div>
-          </div>
-
-          <div className="border-t-2 border-gray-300 py-2">
-            {call.notes ? (
-              call.notes.map((note) => <p key={note.id}>{note.content}</p>)
-            ) : (
-              <p className="text-gray-400">No notes for this call.</p>
-            )}
+            <div className="py-4">
+              {call.notes ? (
+                call.notes.map((note) => <p key={note.id}>{note.content}</p>)
+              ) : (
+                <p className="text-gray-400">No notes for this call.</p>
+              )}
+            </div>
           </div>
         </div>
       </div>

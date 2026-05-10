@@ -1,0 +1,17 @@
+[33m65fc769[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/implement-features-week-2[m[33m, [m[1;32mimplement-features-week-2[m[33m)[m Added button to redirect to calls list
+[33m2240b8b[m Added proper styling to Details component
+[33m24a3aa4[m Abstracted main template into UI to be reused
+[33m690872c[m Added conditional styling & rendering on call type & duration
+[33m1e2e1d8[m Added Archiving mechanism to button
+[33m461322e[m Added styling to Home & CallItem components
+[33m84e6cc6[m Tailwind Setup
+[33mc7df4a1[m Added data rendering inside Details component
+[33m3e4993c[m Added on-click navigation from each call to details
+[33m9ebad90[m Ensuring both components have access to data
+[33m7d631bb[m Components refactor for React Router + SETUP
+[33m9b0d739[m Split logic into different components
+[33ma59daaa[m Confirming data is being rendered correctly
+[33m212d36f[m Starter File Structure
+[33mcc7adcf[m Resolved merge conflict on README (?)
+[33ma5e0492[m Initial Setup & Cleanup
+[33m0080469[m Initial commit
