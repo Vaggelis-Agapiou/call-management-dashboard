@@ -6,7 +6,6 @@ function Details({ calls }) {
   const { id } = useParams();
   const navigate = useNavigate();
   const call = calls.find((c) => c.id.toString() === id);
-  const callDate = new Date(call.created_at).toLocaleString("en-GB");
 
   function handleBack() {
     navigate("/");
@@ -15,10 +14,19 @@ function Details({ calls }) {
   if (!call) {
     return (
       <Template>
+        <h2 className="text-5xl text-slate-800">404</h2>
         <div className="text-gray-400 p-4">Call Not Found :(</div>
+        <button
+          onClick={handleBack}
+          className="flex gap-2 border p-2 border-slate-500 rounded mb-3 text-sm text-slate-500 font-medium hover:bg-slate-800 hover:text-slate-50 transition cursor-pointer"
+        >
+          ← Back to Calls
+        </button>
       </Template>
     );
   }
+
+  const callDate = new Date(call.created_at).toLocaleString("en-GB");
 
   return (
     <Template>
