@@ -14,7 +14,7 @@ function Details({ calls }) {
   if (!call) {
     return (
       <Template>
-        <h2 className="text-5xl text-slate-800">404</h2>
+        <h2 className="font-bold text-5xl text-slate-800">404</h2>
         <div className="text-gray-400 p-4">Call Not Found :(</div>
         <button
           onClick={handleBack}
