@@ -1,25 +1,11 @@
-import { useState } from "react";
-import { callHistory } from "../data/calls";
 import CallItem from "../components/CallItem";
 import Template from "../ui/Template";
 
-function Home() {
-  const [calls, setCalls] = useState(callHistory);
-
-  function handleArchive(id) {
-    setCalls((allCalls) =>
-      allCalls.map((currentCall) =>
-        currentCall.id === id
-          ? { ...currentCall, is_archived: true }
-          : currentCall,
-      ),
-    );
-  }
-
-  if (!calls) {
+function Home({ calls, handleArchive }) {
+  if (calls.length < 1 || !calls.length) {
     return (
       <Template>
-        <div className="text-gray-400 p-4">No calls yest :/</div>
+        <div className="text-gray-400 p-4">No calls yet :/</div>
       </Template>
     );
   }

@@ -1,11 +1,10 @@
 import { useNavigate, useParams } from "react-router-dom";
-import { callHistory } from "../data/calls";
 import Template from "../ui/Template";
 
-function Details() {
+function Details({ calls }) {
   const { id } = useParams();
   const navigate = useNavigate();
-  const call = callHistory.find((c) => c.id.toString() === id);
+  const call = calls.find((c) => c.id.toString() === id);
   const callDate = new Date(call.created_at).toLocaleString("en-GB");
 
   const conditionalTypeStyle = (callType) => {
