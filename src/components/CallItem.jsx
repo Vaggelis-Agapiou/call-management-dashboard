@@ -1,20 +1,10 @@
 import { useNavigate } from "react-router-dom";
+import { getTypeStyle } from "../utils/TypeStyle";
 
 function CallItem({ call, onArchive }) {
   const navigate = useNavigate();
 
   const callDate = new Date(call.created_at).toLocaleString("en-GB");
-
-  const conditionalTypeStyle = (callType) => {
-    switch (callType) {
-      case "answered":
-        return "bg-green-100 border-green-400 text-green-700";
-      case "missed":
-        return "bg-red-100 border-red-400 text-red-700";
-      case "voicemail":
-        return "bg-yellow-100 border-yellow-400 text-yellow-700";
-    }
-  };
 
   function handleClick(e) {
     e.stopPropagation();
@@ -33,7 +23,7 @@ function CallItem({ call, onArchive }) {
           {call.direction}
         </p>
         <p
-          className={`rounded-full ${conditionalTypeStyle(call.call_type)} px-2 font-medium text-sm`}
+          className={`rounded-full ${getTypeStyle(call.call_type, "card")} px-2 font-medium text-sm`}
         >
           {call.call_type}
         </p>

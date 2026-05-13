@@ -1,22 +1,12 @@
 import { useNavigate, useParams } from "react-router-dom";
 import Template from "../ui/Template";
+import { getTypeStyle } from "../utils/TypeStyle";
 
 function Details({ calls }) {
   const { id } = useParams();
   const navigate = useNavigate();
   const call = calls.find((c) => c.id.toString() === id);
   const callDate = new Date(call.created_at).toLocaleString("en-GB");
-
-  const conditionalTypeStyle = (callType) => {
-    switch (callType) {
-      case "answered":
-        return "text-green-700";
-      case "missed":
-        return "text-red-700";
-      case "voicemail":
-        return "text-yellow-700";
-    }
-  };
 
   function handleBack() {
     navigate("/");
@@ -68,7 +58,7 @@ function Details({ calls }) {
             <div className="flex justify-between py-2">
               <p className="text-gray-600">Type:</p>
               <p
-                className={`font-medium capitalize ${conditionalTypeStyle(call.call_type)}`}
+                className={`font-medium capitalize ${getTypeStyle(call.call_type, "text")}`}
               >
                 {call.call_type}
               </p>
