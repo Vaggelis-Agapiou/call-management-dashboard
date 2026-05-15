@@ -1,21 +1,39 @@
-<<<<<<< HEAD
-# React + Vite
+#DevReady Call Center Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React.js dashboard for viewing and managing call activity history. It's built using React, React Router and Tailwind CSS, allowing users to browse calls, view each call's info in detail as well as archiving it.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Tech Stack
 
-## React Compiler
+- **React** - popular component based frontend framework
+- **React Router DOM** - client-side routing between pages
+- **Tailwind CSS** - styling library for responsive UI development
+- **Vite** - Widely known frontent build tool
+- **JavaScript (ES6+)** - app logic & state management
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## Features
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
-=======
-# call-management-dashboard
-small project about rendering lists in a simulated call archive
->>>>>>> 008046964a458a90d4649a2d178225285c68c167
+- View call activity feed
+- Navigate to detailed call views
+- Archive calls dynamically
+- Conditional styling based an call types
+- Shared global state through React state
+- Reusable utility functions for styling logic
+
+---
+
+## Getting Started
+
+### Prequisites
+
+- Node.js `20.19+`
+- npm `9+`
+
+---
+
+##Installation
+
+1. Clone: `git clone https://github.com/Vaggelis-Agapiou/call-management-dashboard`
