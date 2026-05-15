@@ -3,7 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Details from "./pages/Details";
 import { getCalls } from "./services/api";
-import Spinner from "./ui/Spinner";
+//import Spinner from "./ui/Spinner";
 
 function App() {
   const [calls, setCalls] = useState([]);
@@ -29,25 +29,15 @@ function App() {
   }
 
   return (
-    <>
-      {loading ? (
-        <Spinner />
-      ) : (
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <Home
-                calls={calls}
-                handleArchive={handleArchive}
-                loading={loading}
-              />
-            }
-          />
-          <Route path="/call/:id" element={<Details calls={calls} />} />
-        </Routes>
-      )}
-    </>
+    <Routes>
+      <Route
+        path="/"
+        element={
+          <Home calls={calls} handleArchive={handleArchive} loading={loading} />
+        }
+      />
+      <Route path="/call/:id" element={<Details calls={calls} />} />
+    </Routes>
   );
 }
 
