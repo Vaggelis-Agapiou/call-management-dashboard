@@ -8,7 +8,10 @@ export async function getCalls() {
   const response = await fetch(`${BASE_URL}/calls`, { headers });
 
   if (!response.ok) {
-    throw new Error("Failed to fetch Calls");
+    throw {
+      status: response.status,
+      message: response.statusText,
+    };
   }
 
   return response.json();
