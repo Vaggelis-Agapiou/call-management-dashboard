@@ -108,7 +108,7 @@ function Details() {
               </p>
             </div>
             <div className="py-4">
-              {callDetails.notes.length === 0 ? (
+              {callDetails.notes.length !== 0 ? (
                 callDetails.notes.map((note) => (
                   <p key={note.id}>{note.content}</p>
                 ))
