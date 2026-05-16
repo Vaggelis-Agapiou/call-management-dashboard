@@ -1,32 +1,51 @@
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import Template from "../ui/Template";
 import { getTypeStyle } from "../utils/TypeStyle";
+import Template from "../ui/Template";
+import Spinner from "../ui/Spinner";
+import Error from "../ui/Error";
+import { getCallDetails } from "../services/api";
 
-function Details({ calls }) {
+function Details() {
   const { id } = useParams();
   const navigate = useNavigate();
-  const call = calls.find((c) => c.id.toString() === id);
+  const [callDetails, setCallDetails] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    getCallDetails(id)
+      .then((data) => setCallDetails(data))
+      .catch((error) =>
+        setError({ status: error.status, message: error.message }),
+      )
+      .finally(() => setLoading(false));
+  }, [id]);
 
   function handleBack() {
     navigate("/");
   }
 
-  if (!call) {
+  if (loading)
     return (
       <Template>
-        <h2 className="font-bold text-5xl text-slate-800">404</h2>
-        <div className="text-gray-400 p-4">Call Not Found :(</div>
-        <button
-          onClick={handleBack}
-          className="flex gap-2 border p-2 border-slate-500 rounded mb-3 text-sm text-slate-500 font-medium hover:bg-slate-800 hover:text-slate-50 transition cursor-pointer"
-        >
-          ← Back to Calls
-        </button>
+        <Spinner>Loading Call Details...</Spinner>
       </Template>
     );
-  }
 
-  const callDate = new Date(call.created_at).toLocaleString("en-GB");
+  if (error)
+    return (
+      <Template>
+        <Error
+          status={error.status}
+          message={error.message}
+          type="details"
+          onBackButton={handleBack}
+        />
+      </Template>
+    );
+
+  const callDate = new Date(callDetails.created_at).toLocaleString("en-GB");
 
   return (
     <Template>
@@ -40,41 +59,41 @@ function Details({ calls }) {
 
         <div className="bg-white w-full p-5 space-y-7 rounded-2xl border border-gray-100">
           <h2 className="text-center text-2xl font-medium">
-            Call #{call.id} Details
+            Call #{callDetails.id} Details
           </h2>
 
           <div className="text-md divide-y divide-gray-300 ">
             <div className="flex justify-between pb-2">
               <p className="text-gray-600 ">Direction:</p>
               <p
-                className={`font-medium capitalize ${call.direction === "inbound" ? "text-blue-600" : "text-purple-600"}`}
+                className={`font-medium capitalize ${callDetails.direction === "inbound" ? "text-blue-600" : "text-purple-600"}`}
               >
-                {call.direction}
+                {callDetails.direction}
               </p>
             </div>
 
             <div className="flex justify-between py-2">
               <p className="text-gray-600">From:</p>
-              <p className="font-medium">{call.from}</p>
+              <p className="font-medium">{callDetails.from}</p>
             </div>
 
             <div className="flex justify-between py-2">
               <p className="text-gray-600">To:</p>
-              <p className="font-medium">{call.to}</p>
+              <p className="font-medium">{callDetails.to}</p>
             </div>
 
             <div className="flex justify-between py-2">
               <p className="text-gray-600">Type:</p>
               <p
-                className={`font-medium capitalize ${getTypeStyle(call.call_type, "text")}`}
+                className={`font-medium capitalize ${getTypeStyle(callDetails.call_type, "text")}`}
               >
-                {call.call_type}
+                {callDetails.call_type}
               </p>
             </div>
 
             <div className="flex justify-between py-2">
               <p className="text-gray-600">Duration:</p>
-              <p className="font-medium">{call.duration} sec</p>
+              <p className="font-medium">{callDetails.duration} sec</p>
             </div>
 
             <div className="flex justify-between py-2">
@@ -85,12 +104,14 @@ function Details({ calls }) {
             <div className="flex justify-between py-2">
               <p className="text-gray-600">Archived:</p>
               <p className="font-medium">
-                {call.is_archived === true ? "✔️" : "✖️"}
+                {callDetails.is_archived === true ? "✔️" : "✖️"}
               </p>
             </div>
             <div className="py-4">
-              {call.notes ? (
-                call.notes.map((note) => <p key={note.id}>{note.content}</p>)
+              {callDetails.notes.length === 0 ? (
+                callDetails.notes.map((note) => (
+                  <p key={note.id}>{note.content}</p>
+                ))
               ) : (
                 <p className="text-gray-400">No notes for this call.</p>
               )}

@@ -16,3 +16,16 @@ export async function getCalls() {
 
   return response.json();
 }
+
+export async function getCallDetails(id) {
+  const response = await fetch(`${BASE_URL}/calls/${id}`, { headers });
+
+  if (!response.ok) {
+    throw {
+      status: response.status,
+      message: response.statusText,
+    };
+  }
+
+  return response.json();
+}
